@@ -1,0 +1,15 @@
+<td>
+    {{dog.name}}
+</td>
+<td>
+    {{dog.description}}
+</td>
+<td>
+    <img *ngIf="dog.image" [src]="dog.image" class="row-img">
+</td>
+<td>
+    <app-dogs-list-element-edit 
+    [dog]="dog"
+    (remove)="onRemoved($event)"></app-dogs-list-element-edit>
+</td>
+

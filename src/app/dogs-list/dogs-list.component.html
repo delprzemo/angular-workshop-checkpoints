@@ -1,18 +1,10 @@
 <div *ngIf="this.data">
   <table>
     <tr *ngFor="let item of this.data" [ngClass]="{'grey-background': checkIfIdEven(item)}">
-      <td>
-          {{item.name}}
-      </td>
-      <td>
-          {{item.description}}
-      </td>
-      <td>
-          <img *ngIf="item.image" [src]="item.image" class="row-img">
-      </td>
+        <app-dogs-list-element 
+        [dog]="item"
+        (remove)="onDogRemoved($event)">
+      </app-dogs-list-element>
     </tr>
   </table>
 </div>
-
-
-<!-- <tr *ngFor="let item of this.data" [ngStyle]="{'background-color': getBackgroundColor(item)}"> -->

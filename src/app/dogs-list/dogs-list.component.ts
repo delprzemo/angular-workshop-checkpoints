@@ -18,11 +18,8 @@ export class DogsListComponent {
     return item['id'] % 2 === 0;
   }
 
-  // getBackgroundColor(item: object): string {
-  //   if (item['id'] % 2 === 0) {
-  //     return 'lightgray';
-  //   } else {
-  //     return 'white';
-  //   }
-  // }
+  onDogRemoved(item: DogsItem) {
+    this.dogListService.removeDog(item.id);
+    this.data = this.dogListService.dogs;
+  }
 }

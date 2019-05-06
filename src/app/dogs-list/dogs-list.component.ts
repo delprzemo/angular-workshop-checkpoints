@@ -12,7 +12,7 @@ export class DogsListComponent {
   data: DogsItem[];
   constructor(private dogListService: DogListService, private router: Router) {
     this.dogListService.buildDogList();
-    this.data = this.dogListService.dogs;
+    this.syncData();
   }
 
   checkIfIdEven(item: object): boolean {
@@ -25,10 +25,17 @@ export class DogsListComponent {
   }
 
   isDataEmpty(): boolean {
+    if(!this.data) return true;
     return this.data.length === 0;
   }
 
   redirectToHelp() {
     this.router.navigate(['/help'], { queryParams: { redirected: true } });
+  }
+
+  syncData() {
+    this.dogListService.getDogsAsync().subscribe(result => {
+      this.data = result;
+    })
   }
 }

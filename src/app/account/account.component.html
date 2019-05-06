@@ -1,0 +1,15 @@
+<span *ngIf="!isLogged && !isLoginForm">
+    <button (click)="openLoginForm()">Log in</button>
+</span>
+<span *ngIf="!isLogged && isLoginForm">
+    <form  #form="ngForm" (ngSubmit)="login()">
+        <input placeholder="Email" [(ngModel)]="loginModel.email" name="email" required>
+        <input type="password"  placeholder="Password" [(ngModel)]="loginModel.password" name="password" required>
+        <button type="submit">Login</button>
+        <button type="button" (click)="cancel()">Cancel</button>
+    </form>
+</span>
+
+<span *ngIf="isLogged">
+    <button (click)="logout()">Log out</button>
+</span>

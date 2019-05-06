@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserLogin } from './models/user-login';
+import { UserLogin } from './models/user-login.model';
 import { FormControl } from '@angular/forms';
+import { AccountService } from './services/account.service';
 
 @Component({
   selector: 'app-account',
@@ -8,12 +9,11 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./account.component.less']
 })
 export class AccountComponent implements OnInit {
-  isLogged = false;
   isLoginForm = false;
   loginModel: UserLogin;
   @ViewChild('form') form: FormControl;
 
-  constructor() {
+  constructor(private accountService: AccountService) {
       this.loginModel = new UserLogin();
    }
 
@@ -25,9 +25,16 @@ export class AccountComponent implements OnInit {
   }
 
   login() {
+    type token = {token: string};
     if (this.form.valid) {
-      this.isLogged = true;
-      console.log(this.loginModel);
+      this.accountService.logIn(this.loginModel.email, this.loginModel.password).subscribe((response: token) => {
+        this.accountService.getUserData().subscribe(userData=> {
+          this.accountService.setActiveUser(this.loginModel.email, 
+            this.loginModel.password, 
+            response.token, 
+            userData.data.avatar);
+        });
+      })
     }
   }
 
@@ -35,8 +42,16 @@ export class AccountComponent implements OnInit {
     this.isLoginForm = false;
   }
 
+  isLogged(): boolean {
+    return  this.accountService.isLogged();
+  }
+
   logout() {
-    this.isLogged = false;
+    this.accountService.logOut();
     this.isLoginForm = false;
+  }
+
+  getUser() {
+    return this.accountService.getUser();
   }
 }

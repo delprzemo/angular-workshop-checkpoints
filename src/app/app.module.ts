@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DogsListComponent } from './dogs-list/dogs-list.component';
@@ -12,6 +11,10 @@ import { HelpComponent } from './help/help.component';
 import { MockedHttpService } from './utils/mocked-http.service';
 import { AccountComponent } from './account/account.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from "@angular/common/http";
+import { AccountService } from './account/services/account.service';
+import { TextCollapsePipe } from './common/pipes/text-collapse.pipe';
+import { ElementCursorDirective } from './common/directives/element-cursor.directive';
 
 
 @NgModule({
@@ -22,14 +25,17 @@ import { FormsModule } from '@angular/forms';
     DogsListElementComponent,
     DogsListElementEditComponent,
     HelpComponent,
-    AccountComponent
+    AccountComponent,
+    TextCollapsePipe,
+    ElementCursorDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule 
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [DogListService, MockedHttpService],
+  providers: [DogListService, MockedHttpService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

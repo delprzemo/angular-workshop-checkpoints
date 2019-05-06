@@ -2,7 +2,7 @@
     {{dog.name}}
 </td>
 <td>
-    {{dog.description}}
+    {{dog.description | textCollapse : 35}}
 </td>
 <td>
     <img *ngIf="dog.image" [src]="dog.image" class="row-img">
@@ -12,4 +12,3 @@
     [dog]="dog"
     (remove)="onRemoved($event)"></app-dogs-list-element-edit>
 </td>
-

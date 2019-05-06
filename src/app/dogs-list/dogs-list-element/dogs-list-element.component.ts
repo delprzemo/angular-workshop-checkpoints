@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { DogsItem } from '../models/dogs-item';
+import { TextCollapsePipe } from 'src/app/common/pipes/text-collapse.pipe';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dogs-list-element',
@@ -13,6 +15,7 @@ export class DogsListElementComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
   onRemoved(dog: DogsItem) {

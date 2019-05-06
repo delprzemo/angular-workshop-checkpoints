@@ -1,7 +1,7 @@
-<span *ngIf="!isLogged && !isLoginForm">
+<span *ngIf="!isLogged() && !isLoginForm">
     <button (click)="openLoginForm()">Log in</button>
 </span>
-<span *ngIf="!isLogged && isLoginForm">
+<span *ngIf="!isLogged() && isLoginForm">
     <form  #form="ngForm" (ngSubmit)="login()">
         <input placeholder="Email" [(ngModel)]="loginModel.email" name="email" required>
         <input type="password"  placeholder="Password" [(ngModel)]="loginModel.password" name="password" required>
@@ -10,6 +10,7 @@
     </form>
 </span>
 
-<span *ngIf="isLogged">
+<span *ngIf="isLogged()">
+    <img [src]="this.getUser().avatar" class="avatar">
     <button (click)="logout()">Log out</button>
 </span>

@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { DogListService } from './dogs-list/services/dog-list.service';
 import { DogsListElementComponent } from './dogs-list/dogs-list-element/dogs-list-element.component';
 import { DogsListElementEditComponent } from './dogs-list/dogs-list-element/dogs-list-element-edit/dogs-list-element-edit.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DogsListElementEditComponent } from './dogs-list/dogs-list-element/dogs
     DogsListComponent,
     HomeComponent,
     DogsListElementComponent,
-    DogsListElementEditComponent
+    DogsListElementEditComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
